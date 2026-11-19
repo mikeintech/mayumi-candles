@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-col="cocoa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mayumi Candles · Domani</title>
+<meta name="description" content="Mayumi scented candles by Domani. Six scents named for the songs, poured in amber glass.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("mayumi-lit"))document.documentElement.classList.add("lit-before")}catch(e){}</script>
+<link rel="stylesheet" href="candles.css?v=5">
+</head>
+<body class="locked">
+
+<!-- entry: one candle in a dark room, tap to light -->
+<div id="entry">
+  <button id="light" aria-label="Tap to light the candle">
+    <span class="e-candle"><i class="e-glow"></i><img src="img/entry-candle.png" alt=""><i class="e-flame"></i></span>
+    <b class="e-tap">Tap to light</b>
+    <small class="e-sub">Mayumi &middot; Scented candles by Domani</small>
+  </button>
+</div>
+
+<header id="nav">
+  <a class="brand" href="#top" aria-label="Mayumi"><img src="img/logo-cocoa.webp" alt=""><span>Mayumi</span></a>
+  <nav><a href="#scents">Scents</a><a href="#sets">Gift sets</a><a href="#ritual">The ritual</a><a href="https://mikeintech.github.io/domani-site/">Domani</a></nav>
+  <div class="col-toggle" role="group" aria-label="Collection"><button data-c="sand">Sand</button><button data-c="cocoa" class="on">Cocoa</button></div>
+  <button class="bag" id="bagBtn" aria-label="Open bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><i id="bagN">0</i></button>
+</header>
+
+<main>
+<section id="top" class="hero">
+  <div class="h-room"><img src="img/set-cocoa.webp" alt="Three Mayumi candles burning in front of the cocoa gift box">
+    <i class="fl" style="--x:31.3%"></i><i class="fl" style="--x:56.3%"></i><i class="fl" style="--x:82%"></i></div>
+  <div class="h-c">
+    <p class="kick">Scented candles by Domani</p>
+    <h1>Every song<br><em>has a scent.</em></h1>
+    <p class="lede">Six candles poured in amber glass, each one named for a record. Light one, put the song on, and let the room say the rest.</p>
+    <div class="cta"><a class="btn solid" href="#scents">Find your scent</a><a class="btn" href="#sets">Gift sets</a></div>
+  </div>
+</section>
+
+<section id="scents" class="sec">
+  <div class="sec-h"><p class="kick">The collection</p><h2>Six scents, <em>six songs</em></h2>
+    <p class="sub">Sand for the soft ones, cocoa for the late nights. Tap a candle to open it.</p></div>
+  <div class="tabs" role="tablist"><button class="on" data-f="all">All six</button><button data-f="sand">Sand</button><button data-f="cocoa">Cocoa</button></div>
+  <div class="wall" id="wall"></div>
+</section>
+
+<section id="ritual" class="ritual">
+  <div class="r-img"><img src="img/set-sand.webp" alt="The sand gift set with three small candles lit"></div>
+  <div class="r-c">
+    <p class="kick">The ritual</p>
+    <h2>Light it before <em>the first song.</em></h2>
+    <ol>
+      <li><b>01</b><span><strong>Trim the wick</strong> to a quarter inch before every burn.</span></li>
+      <li><b>02</b><span><strong>Let it pool.</strong> The first burn should melt all the way to the glass, about two hours.</span></li>
+      <li><b>03</b><span><strong>Play the record</strong> the candle is named for. That's the whole point.</span></li>
+      <li><b>04</b><span><strong>Lid on, flame out.</strong> Keep the glass for whatever comes next.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="sets" class="sec sets">
+  <div class="sec-h"><p class="kick">Gift sets</p><h2>Three to <em>a box</em></h2><p class="sub">Three 6oz candles in the Mayumi gift box. One for every mood of the night.</p></div>
+  <div class="set-grid" id="sets-grid"></div>
+</section>
+
+<section class="join">
+  <form class="cap" novalidate>
+    <p class="kick">First to the flame</p><h3>Get the next pour</h3>
+    <p class="sub">New scents sell out. Join the list and we'll tell you first.</p>
+    <div class="cap-f"><input name="fname" placeholder="First name" aria-label="First name" autocomplete="given-name"><input name="email" type="email" placeholder="Email address" aria-label="Email address" autocomplete="email"><input name="phone" type="tel" placeholder="Mobile number (SMS)" aria-label="Mobile number" autocomplete="tel"><button>Join the list</button></div>
+    <label class="cap-c"><input type="checkbox" name="sms"> Text me new pours and restocks. Msg &amp; data rates may apply. Reply STOP to opt out.</label>
+    <p class="cap-e" role="alert"></p><p class="cap-t"></p>
+  </form>
+</section>
+
+<footer><img src="img/logo-cocoa.webp" alt="Mayumi"><p>Mayumi scented candles &middot; a Domani house &middot; Coconut soy, poured in amber glass</p><p class="fine">Concept preview. Prices and scent notes are placeholders.</p></footer>
+</main>
+
+<!-- product view -->
+<div id="pdp" role="dialog" aria-modal="true" aria-label="Candle"><div class="p-in">
+  <button class="p-x" aria-label="Close">×</button>
+  <div class="p-gal"><div class="p-main"><img id="pImg" alt=""></div><div class="p-thumbs" id="pThumbs"></div></div>
+  <div class="p-info">
+    <p class="kick" id="pCol"></p><h2 id="pName"></h2><p class="p-price" id="pPrice"></p>
+    <p class="p-song" id="pSong"></p>
+    <dl class="p-notes" id="pNotes"></dl>
+    <p class="p-meta" id="pMeta"></p>
+    <div class="p-buy"><div class="qty"><button data-q="-1" aria-label="Less">−</button><span id="pQty">1</span><button data-q="1" aria-label="More">+</button></div><button class="btn solid" id="pAdd">Add to bag</button></div>
+    <p class="p-ship">Hand poured in small batches. Ships in the Mayumi box.</p>
+  </div>
+</div></div>
+
+<!-- bag -->
+<aside id="bag" aria-label="Bag"><div class="b-h"><h3>Your bag</h3><button class="p-x" id="bagX" aria-label="Close bag">×</button></div><ul id="bagList"></ul>
+  <div class="b-f"><p>Subtotal <b id="bagSub">$0</b></p><button class="btn solid" disabled>Checkout on Shopify</button><small>Concept preview: checkout connects to the Shopify store.</small></div></aside>
+<div id="scrim"></div>
+
+<script src="candles.js?v=1"></script>
+</body>
+</html>
