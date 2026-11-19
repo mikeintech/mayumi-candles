@@ -38,7 +38,7 @@
   if (document.documentElement.classList.contains('lit-before')) enter();
 
   // ---------- collection: sand / cocoa changes the whole room ----------
-  const setCol = c => { document.documentElement.dataset.col = c; $$('.col-toggle button').forEach(b => b.classList.toggle('on', b.dataset.c === c));
+  const setCol = c => { document.documentElement.dataset.col = c; $("#pdp").dataset.col = c; $$('.col-toggle button').forEach(b => b.classList.toggle('on', b.dataset.c === c));
     $$('.brand img, footer img').forEach(i => (i.src = `img/logo-${c}.webp`)); $('.h-room img').src = HERO[c]; $('.h-room').dataset.c = c; };
   $$('.col-toggle button').forEach(b => (b.onclick = () => setCol(b.dataset.c)));
 
