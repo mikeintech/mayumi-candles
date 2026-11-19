@@ -281,3 +281,4 @@ body.product #nav{background:var(--glass);backdrop-filter:blur(14px);color:var(-
 .notify .n-msg{font-size:13px;color:var(--acc)}.notify .n-msg:empty{display:none}
 .notify.done div{display:none}
 .set img{aspect-ratio:1/1;object-position:50% 50%}
+.sc-img .tag.pre{background:#f1dcc6;color:#24110a;box-shadow:0 2px 10px rgba(0,0,0,.35)}

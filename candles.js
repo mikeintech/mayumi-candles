@@ -1,7 +1,7 @@
 // Mayumi candles: entry, collections, scent wall, product view, bag. Prices + notes are placeholders.
 (() => {
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-  const money = n => '$' + n.toFixed(2).replace(/\.00$/, '');
+  const money = n => '$' + Math.round(n);
 
   const SCENTS = [
     { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '16oz · 2 wicks', price: 45,
@@ -23,7 +23,7 @@
     { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 54, img: 'img/forever-lasting-2.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
     { id: 'set-cocoa', name: 'The Cocoa Set', col: 'cocoa', price: 54, img: 'img/nhie-1.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
   ];
-  const N = { nhie: 1 }; const shots = p => (N[p.id] === 1 ? [1] : [1, 2]).map(k => `img/${p.id}-${k}.webp`);
+  const N = { nhie: 1, 'good-girl': 1 }; const shots = p => (N[p.id] === 1 ? [1] : [1, 2]).map(k => `img/${p.id}-${k}.webp`);
   const HERO = { cocoa: 'img/nhie-1.webp', sand: 'img/forever-lasting-1.webp' };
   const btnTxt = p => (p.st === 'pre' ? 'Pre-order' : p.st === 'out' ? 'Sold out' : 'Add to bag');
   const ALL = Object.fromEntries([...SCENTS, ...SETS].map(p => [p.id, p]));
