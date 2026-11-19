@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <script>try{if(localStorage.getItem("mayumi-lit"))document.documentElement.classList.add("lit-before")}catch(e){}</script>
-<link rel="stylesheet" href="candles.css?v=5">
+<link rel="stylesheet" href="candles.css?v=6">
 </head>
 <body class="locked">
 
@@ -80,8 +80,9 @@
 </main>
 
 <!-- product view -->
-<div id="pdp" role="dialog" aria-modal="true" aria-label="Candle"><div class="p-in">
-  <button class="p-x" aria-label="Close">×</button>
+<section id="pdp" aria-label="Candle">
+  <a class="p-back" id="pBack" href="#scents">← All scents</a>
+  <div class="p-in">
   <div class="p-gal"><div class="p-main"><img id="pImg" alt=""></div><div class="p-thumbs" id="pThumbs"></div></div>
   <div class="p-info">
     <p class="kick" id="pCol"></p><h2 id="pName"></h2><p class="p-price" id="pPrice"></p>
@@ -91,13 +92,15 @@
     <div class="p-buy"><div class="qty"><button data-q="-1" aria-label="Less">−</button><span id="pQty">1</span><button data-q="1" aria-label="More">+</button></div><button class="btn solid" id="pAdd">Add to bag</button></div>
     <p class="p-ship">Hand poured in small batches. Ships in the Mayumi box.</p>
   </div>
-</div></div>
+  </div>
+  <div class="p-more"><p class="kick">Keep burning</p><h3>More scents</h3><div class="wall" id="pMore"></div></div>
+</section>
 
 <!-- bag -->
 <aside id="bag" aria-label="Bag"><div class="b-h"><h3>Your bag</h3><button class="p-x" id="bagX" aria-label="Close bag">×</button></div><ul id="bagList"></ul>
   <div class="b-f"><p>Subtotal <b id="bagSub">$0</b></p><button class="btn solid" disabled>Checkout on Shopify</button><small>Concept preview: checkout connects to the Shopify store.</small></div></aside>
 <div id="scrim"></div>
 
-<script src="candles.js?v=1"></script>
+<script src="candles.js?v=3"></script>
 </body>
 </html>

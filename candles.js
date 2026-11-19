@@ -61,16 +61,28 @@
     $('#pName').textContent = p.name; $('#pPrice').textContent = money(p.price); $('#pSong').textContent = p.song;
     $('#pNotes').innerHTML = p.notes.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
     $('#pMeta').textContent = p.size + ' · Coconut soy · Amber glass';
-    $('#pdp').dataset.col = p.col; $('#pdp').classList.add('on'); document.body.classList.add('modal');
-    history.replaceState(null, '', '#' + p.id);
+    // a full page: the shop hides, the candle takes the page in its own collection's colors
+    if (!document.body.classList.contains('product')) backY = scrollY;
+    setCol(p.col); $('#pdp').dataset.col = p.col; $('#pdp').classList.add('on'); document.body.classList.add('product');
+    $('#pMore').innerHTML = SCENTS.filter(s => s.id !== p.id).slice(0, 3).map(card).join('');
+    document.title = p.name + ' · Mayumi Candles';
+    if (location.hash !== '#' + p.id) history.pushState(null, '', '#' + p.id);
+    scrollTo({ top: 0, behavior: 'instant' });
   }
-  const close = () => { $('#pdp').classList.remove('on'); document.body.classList.remove('modal'); history.replaceState(null, '', location.pathname); };
+  let backY = 0;
+  const close = (push = true) => { if (!document.body.classList.contains('product')) return;
+    $('#pdp').classList.remove('on'); document.body.classList.remove('product'); document.title = 'Mayumi Candles · Domani';
+    if (push) history.pushState(null, '', location.pathname); scrollTo({ top: backY, behavior: 'instant' }); };
+  addEventListener('popstate', () => { const id = location.hash.slice(1), sec = id && document.getElementById(id);
+    if (ALL[id] && !ALL[id].img) return open(id);
+    if (sec && document.body.classList.contains('product')) { backY = sec.getBoundingClientRect().top + scrollY; } // a nav link: land on that section
+    close(false); });
+  $('#pMore').onclick = e => { const c = e.target.closest('.sc'); if (c) open(c.dataset.id); };
+  $('#pBack').onclick = e => { e.preventDefault(); close(); $('#scents').scrollIntoView({ behavior: 'instant' }); };
   $('#pThumbs').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#pImg').src = b.dataset.s; $$('#pThumbs button').forEach(x => x.classList.toggle('on', x === b)); };
   $$('#pdp [data-q]').forEach(b => (b.onclick = () => { qty = Math.max(1, Math.min(9, qty + +b.dataset.q)); $('#pQty').textContent = qty; }));
-  $('#pAdd').onclick = () => { add(cur.id, qty); $('#pAdd').textContent = 'Added ✓'; setTimeout(() => { $('#pAdd').textContent = 'Add to bag'; close(); openBag(); }, 800); };
-  $('#pdp .p-x').onclick = close;
-  $('#pdp').onclick = e => { if (e.target.id === 'pdp') close(); };
-  addEventListener('keydown', e => { if (e.key === 'Escape') { close(); closeBag(); } });
+  $('#pAdd').onclick = () => { add(cur.id, qty); $('#pAdd').textContent = 'Added ✓'; setTimeout(() => { $('#pAdd').textContent = 'Add to bag'; openBag(); }, 700); };
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeBag(); });
   if (ALL[location.hash.slice(1)]) { enter(); open(location.hash.slice(1)); }
 
   // ---------- bag (local until it's wired to the Shopify cart) ----------
