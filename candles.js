@@ -6,7 +6,7 @@
   const SCENTS = [
     { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '16oz · 2 wicks', price: 45,
       song: 'Named for “Never Have I Ever”, the new single.', notes: [['Notes', 'Black cherry, smoked clove, leather, dark amber']] },
-    { id: 'henny-crystals', name: 'Henny & Crystals', col: 'cocoa', size: '7oz · 1 wick', price: 35,
+    { id: 'henny-crystals', name: 'Henny & Crystals', col: 'cocoa', size: '8oz · 1 wick', price: 35,
       song: 'White tea and clean citrus, followed by sweet florals of jasmine and violet, resting on a base of cedar, sandalwood, tonka and light amber.', notes: [['Top', 'White tea, clean citrus'], ['Heart', 'Jasmine, violet'], ['Base', 'Cedar, sandalwood, tonka, light amber']] },
     { id: 'clean-up', name: 'Clean Up', col: 'cocoa', size: '18oz · 2 wicks', price: 50,
       song: 'Gardenia tuberose infused with essential oils of lemon peel, lemon, nutmeg and lime, with the lush green scent of orchid blended with heavy notes of pear and light musk.', notes: [['Notes', 'Gardenia tuberose, lemon, nutmeg, lime'], ['Finish', 'Orchid, pear, light musk']] },
