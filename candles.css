@@ -1,6 +1,6 @@
 /* Mayumi candles: two palettes taken from the boxes. Cocoa = dark box, gold type. Sand = kraft box, brown type. */
 :root,[data-col=cocoa]{--bg:#1d0d07;--bg2:#2a140b;--card:#311a10;--ink:#f1dcc6;--soft:rgba(241,220,198,.7);--line:rgba(241,220,198,.16);--acc:#d6a676;--acc-ink:#24110a;--glass:rgba(29,13,7,.72)}
-[data-col=sand]{--bg:#e8cfae;--bg2:#ddbb92;--card:#f1dcc0;--ink:#3b1b0e;--soft:rgba(59,27,14,.72);--line:rgba(59,27,14,.18);--acc:#4a2213;--acc-ink:#f3dfc6;--glass:rgba(232,207,174,.8)}
+[data-col=sand]{--bg:#e8cfae;--bg2:#ddbb92;--card:#f1dcc0;--ink:#3b1b0e;--soft:rgba(59,27,14,.9);--line:rgba(59,27,14,.18);--acc:#4a2213;--acc-ink:#f3dfc6;--glass:rgba(232,207,174,.8)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Lato,system-ui,sans-serif;transition:background .9s ease,color .9s ease;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -144,7 +144,7 @@ footer .fine{font-size:11px;opacity:.7}
 #pdp.on{opacity:1;visibility:visible;transition:opacity .4s}
 .p-in{position:relative;display:grid;grid-template-columns:1.1fr 1fr;width:min(1100px,100%);max-height:calc(100svh - 40px);overflow:auto;background:var(--bg);color:var(--ink);border-radius:6px;box-shadow:0 40px 100px rgba(0,0,0,.5);transform:translateY(20px);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 #pdp.on .p-in{transform:none}
-#pdp[data-col=sand] .p-in{--bg:#e8cfae;--card:#f1dcc0;--ink:#3b1b0e;--soft:rgba(59,27,14,.72);--line:rgba(59,27,14,.18);--acc:#4a2213;--acc-ink:#f3dfc6}
+#pdp[data-col=sand] .p-in{--bg:#e8cfae;--card:#f1dcc0;--ink:#3b1b0e;--soft:rgba(59,27,14,.9);--line:rgba(59,27,14,.18);--acc:#4a2213;--acc-ink:#f3dfc6}
 #pdp[data-col=cocoa] .p-in{--bg:#1d0d07;--card:#311a10;--ink:#f1dcc6;--soft:rgba(241,220,198,.7);--line:rgba(241,220,198,.16);--acc:#d6a676;--acc-ink:#24110a}
 .p-x{position:absolute;top:12px;right:14px;z-index:2;width:40px;height:40px;font-size:28px;line-height:1;border-radius:50%}
 .p-x:hover{background:var(--line)}
@@ -284,3 +284,4 @@ body.product #nav{background:var(--glass);backdrop-filter:blur(14px);color:var(-
 .sc-img .tag.pre{background:#f1dcc6;color:#24110a;box-shadow:0 2px 10px rgba(0,0,0,.35)}
 
 .set-img{position:relative;display:block}.set-img .tag{position:absolute;z-index:2;top:12px;left:12px;font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:7px 10px;border-radius:99px;font-style:normal;background:#f1dcc6;color:#24110a;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.p-more .kick,.p-more .sc-t small{color:var(--ink)}
