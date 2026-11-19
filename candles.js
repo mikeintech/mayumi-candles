@@ -86,7 +86,7 @@
   }
   let backY = 0;
   const close = (push = true) => { if (!document.body.classList.contains('product')) return;
-    $('#pdp').classList.remove('on'); document.body.classList.remove('product'); document.title = 'Mayumi Candles · Domani';
+    $('#pdp').classList.remove('on'); document.body.classList.remove('product'); document.title = 'Mayumi Candles';
     if (push) history.pushState(null, '', location.pathname); scrollTo({ top: backY, behavior: 'instant' }); };
   addEventListener('popstate', () => { const id = location.hash.slice(1), sec = id && document.getElementById(id);
     if (ALL[id] && !ALL[id].img) return open(id);
