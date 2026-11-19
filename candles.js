@@ -14,7 +14,7 @@
       song: 'Bold and unforgettable, like a timeless romance or your favorite old-school track. Warm vanilla evokes the quiet comfort of lasting connection, while deep woods and smoky undertones leave a presence that stays with you. Maybe even forever.', notes: [['Notes', 'Coffee & whiskey, vanilla bean noel, mahogany teakwood, palo santo patchouli']] },
     { id: 'hot-yoga', name: 'Hot Yoga', col: 'sand', st: 'out', size: '8oz · 1 wick · copper jar', price: 35,
       song: 'Smooth, grounding, and softly sweet, like a deep exhale after your final pose. Warm vanilla blends with earthy palo santo and patchouli for a calm, restorative atmosphere that lingers like peace on your skin.', notes: [['Notes', 'Vanilla bean noel, palo santo patchouli']] },
-    { id: 'good-girl', name: 'Good Girl', col: 'sand', st: 'out', size: '8oz · 1 wick · iridescent sherbet', price: 35,
+    { id: 'good-girl', name: 'Good Girl', col: 'sand', st: 'pre', size: '8oz · 1 wick · iridescent sherbet', price: 35,
       song: 'Soft, warm, and quietly addictive. Rich cocoa butter and airy cashmere melt into the skin: creamy sweetness meets velvety warmth. Effortless, feminine, and a little dangerous, because “good” is only part of the story.', notes: [['Notes', 'Cocoa butter, cashmere']] },
     { id: 'call-me', name: 'Call Me', col: 'sand', size: '8oz · 1 wick · amber jar', price: 20,
       song: 'Soft, fresh, and sincere, like checking in just to hear how someone’s day went. Airy florals, a touch of brightness, and a grounding finish: a quiet kind of care that stays with you.', notes: [['Notes', 'Gardenia, frankincense, citrus vervain']] },
