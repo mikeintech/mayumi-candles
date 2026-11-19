@@ -255,3 +255,28 @@ body.product #nav{background:var(--glass);backdrop-filter:blur(14px);color:var(-
 .p-more h3{font-size:clamp(36px,4vw,54px);margin-bottom:30px}
 .p-more .sc{opacity:1;transform:none}
 @media (max-width:900px){#pdp{padding-top:84px}#pdp .p-in{grid-template-columns:1fr}#pdp .p-gal{position:static}.p-more .wall{grid-template-columns:1fr 1fr}.p-more .sc:nth-child(3){display:none}}
+
+/* new photography: square shots, two flames per hero candle */
+.h-room{aspect-ratio:1/1}
+.h-room .fl{top:18%;width:9%}
+.h-room[data-c=cocoa] .fl:nth-of-type(1){left:43.5%}.h-room[data-c=cocoa] .fl:nth-of-type(2){left:58.5%;top:17%}
+.h-room[data-c=sand] .fl:nth-of-type(1){left:42.5%;top:20%}.h-room[data-c=sand] .fl:nth-of-type(2){left:57.5%;top:20%}
+.p-thumbs{grid-template-columns:repeat(2,1fr)}
+.h-room{translate:-50% 0;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent);mask-image:radial-gradient(closest-side,#000 72%,transparent)}
+@media (min-width:901px){.h-room{left:70%}}
+@media (max-width:900px){.h-room{height:50svh;top:64px}}
+
+/* stock states */
+.sc-img .tag{position:absolute;z-index:2;top:12px;left:12px;font:700 10px/1 Lato,sans-serif;letter-spacing:.16em;text-transform:uppercase;padding:7px 10px;border-radius:99px;font-style:normal}
+.tag.pre{background:var(--acc);color:#1a0d06}
+.tag.out{background:rgba(20,8,3,.75);color:#f3e6d6;border:1px solid rgba(243,230,214,.3)}
+.sc:has(.tag.out) .sc-img img{filter:grayscale(.35) brightness(.7)}
+#pAdd:disabled{opacity:.5;cursor:not-allowed}
+#pShipNote:empty{display:none}
+
+.notify{margin:22px 0 6px;padding:18px;border:1px solid color-mix(in srgb,var(--acc) 45%,transparent);border-radius:6px;display:grid;gap:12px}
+.notify[hidden],.p-buy[hidden]{display:none}
+.notify p{margin:0}.notify div{display:flex;gap:10px;flex-wrap:wrap}
+.notify input{flex:1 1 200px;min-width:0;padding:13px 14px;background:transparent;border:1px solid color-mix(in srgb,var(--ink,#f3e6d6) 30%,transparent);color:inherit;border-radius:3px;font:inherit}
+.notify .n-msg{font-size:13px;color:var(--acc)}.notify .n-msg:empty{display:none}
+.notify.done div{display:none}

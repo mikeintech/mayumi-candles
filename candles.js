@@ -4,7 +4,7 @@
   const money = n => '$' + n.toFixed(2).replace(/\.00$/, '');
 
   const SCENTS = [
-    { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', size: '16oz · single wick', price: 28,
+    { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '16oz · single wick', price: 28,
       song: 'Named for “Never Have I Ever”, the new single.', notes: [['Top', 'Black cherry, smoked clove'], ['Heart', 'Leather, tobacco leaf'], ['Base', 'Dark amber, vanilla bean']] },
     { id: 'henny-crystals', name: 'Henny & Crystals', col: 'cocoa', size: '12oz · three wick, crystal topped', price: 38,
       song: 'Cognac and a little shine. Poured with real crystals on top.', notes: [['Top', 'Cognac, orange peel'], ['Heart', 'Oak, brown sugar'], ['Base', 'Smoked vanilla, musk']] },
@@ -12,15 +12,20 @@
       song: 'For the morning after. Fresh sheets, open windows.', notes: [['Top', 'Bergamot, sea salt'], ['Heart', 'White tea, linen'], ['Base', 'Cedar, clean musk']] },
     { id: 'forever-lasting', name: 'Forever Lasting', col: 'sand', size: '16oz · single wick', price: 28,
       song: 'Named for the album Forever Lasting.', notes: [['Top', 'Pear, pink pepper'], ['Heart', 'Rose, peony'], ['Base', 'Sandalwood, warm cashmere']] },
-    { id: 'good-girl', name: 'Good Girl', col: 'sand', size: '16oz · iridescent glass', price: 30,
+    { id: 'hot-yoga', name: 'Hot Yoga', col: 'sand', st: 'out', size: '8oz · rose gold glass', price: 30,
+      song: 'Warm room, slow breath. Poured in rose gold glass.', notes: [['Top', 'Ginger, grapefruit'], ['Heart', 'Eucalyptus, jasmine'], ['Base', 'Amber, sandalwood']] },
+    { id: 'good-girl', name: 'Good Girl', col: 'sand', st: 'out', size: '16oz · iridescent glass', price: 30,
       song: 'Sweet on the surface. Poured in iridescent glass.', notes: [['Top', 'Strawberry, champagne'], ['Heart', 'Jasmine, cotton candy'], ['Base', 'Vanilla musk']] },
     { id: 'call-me', name: 'Call Me', col: 'sand', size: '8oz · travel jar', price: 22,
       song: 'Small enough to take with you. Light it when you miss them.', notes: [['Top', 'Fig, mandarin'], ['Heart', 'Coconut milk, orange blossom'], ['Base', 'Tonka, soft woods']] },
   ];
   const SETS = [
-    { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 54, img: 'img/set-sand.webp', inc: 'Forever Lasting · Call Me · Good Girl', size: '3 × 6oz in the sand gift box' },
-    { id: 'set-cocoa', name: 'The Cocoa Set', col: 'cocoa', price: 54, img: 'img/set-cocoa.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
+    { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 54, img: 'img/forever-lasting-2.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
+    { id: 'set-cocoa', name: 'The Cocoa Set', col: 'cocoa', price: 54, img: 'img/nhie-1.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
   ];
+  const N = { nhie: 1 }; const shots = p => (N[p.id] === 1 ? [1] : [1, 2]).map(k => `img/${p.id}-${k}.webp`);
+  const HERO = { cocoa: 'img/nhie-1.webp', sand: 'img/forever-lasting-1.webp' };
+  const btnTxt = p => (p.st === 'pre' ? 'Pre-order' : p.st === 'out' ? 'Sold out' : 'Add to bag');
   const ALL = Object.fromEntries([...SCENTS, ...SETS].map(p => [p.id, p]));
 
   // ---------- entry: tap to light (remembered after the first visit) ----------
@@ -34,12 +39,12 @@
 
   // ---------- collection: sand / cocoa changes the whole room ----------
   const setCol = c => { document.documentElement.dataset.col = c; $$('.col-toggle button').forEach(b => b.classList.toggle('on', b.dataset.c === c));
-    $$('.brand img, footer img').forEach(i => (i.src = `img/logo-${c}.webp`)); $('.h-room img').src = `img/set-${c}.webp`; };
+    $$('.brand img, footer img').forEach(i => (i.src = `img/logo-${c}.webp`)); $('.h-room img').src = HERO[c]; $('.h-room').dataset.c = c; };
   $$('.col-toggle button').forEach(b => (b.onclick = () => setCol(b.dataset.c)));
 
   // ---------- scent wall ----------
   const card = p => `<button class="sc ${p.col}" data-id="${p.id}" aria-label="${p.name}">
-      <span class="sc-img"><img src="img/${p.id}-photo.webp" alt="" loading="lazy"><img class="lbl" src="img/${p.id}-label.webp" alt="" loading="lazy"></span>
+      <span class="sc-img">${p.st ? `<em class="tag ${p.st}">${p.st === 'pre' ? 'Pre-order' : 'Sold out'}</em>` : ''}${shots(p).map((s, i) => `<img${i ? ' class="lbl"' : ''} src="${s}" alt="" loading="lazy">`).join('')}</span>
       <span class="sc-t"><b>${p.name}</b><small>${p.size}</small></span><span class="sc-p">${money(p.price)}</span></button>`;
   const build = f => { $('#wall').innerHTML = SCENTS.filter(p => f === 'all' || p.col === f).map(card).join(''); };
   build('all');
@@ -50,13 +55,19 @@
     <div><p class="kick">${s.size}</p><h3>${s.name}</h3><p>${s.inc}</p><div class="set-b"><span>${money(s.price)}</span><button class="btn solid" data-add="${s.id}">Add to bag</button></div></div></article>`).join('');
   $('#sets-grid').onclick = e => { const b = e.target.closest('[data-add]'); if (b) { add(b.dataset.add, 1); b.textContent = 'Added ✓'; setTimeout(() => (b.textContent = 'Add to bag'), 1400); } };
 
+  // ---------- back-in-stock alerts (saved locally until wired to the list service) ----------
+  $('#pNotify').onsubmit = e => { e.preventDefault(); const f = e.target, em = f.email.value.trim(), m = f.querySelector('.n-msg');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { m.textContent = 'Enter a valid email address.'; return; }
+    try { const k = 'mayumi-restock', l = JSON.parse(localStorage.getItem(k) || '[]'); l.push({ email: em, scent: cur.id, at: Date.now() }); localStorage.setItem(k, JSON.stringify(l)); } catch (x) {}
+    f.classList.add('done'); f.email.value = ''; m.textContent = `You're on the list. We'll email you when ${cur.name} is back.`; };
+
   // ---------- product view ----------
   let cur = null, qty = 1;
   function open(id) {
     const p = ALL[id]; cur = p; qty = 1; $('#pQty').textContent = 1;
-    const shots = ['photo', 'label', 'box'].map(k => `img/${p.id}-${k}.webp`);
-    $('#pImg').src = shots[0]; $('#pImg').alt = p.name;
-    $('#pThumbs').innerHTML = shots.map((s, i) => `<button class="${i ? '' : 'on'}" data-s="${s}"><img src="${s}" alt=""></button>`).join('');
+    const sh = shots(p);
+    $('#pImg').src = sh[0]; $('#pImg').alt = p.name;
+    $('#pThumbs').innerHTML = sh.length < 2 ? '' : sh.map((s, i) => `<button class="${i ? '' : 'on'}" data-s="${s}"><img src="${s}" alt=""></button>`).join('');
     $('#pCol').textContent = (p.col === 'sand' ? 'Sand' : 'Cocoa') + ' collection';
     $('#pName').textContent = p.name; $('#pPrice').textContent = money(p.price); $('#pSong').textContent = p.song;
     $('#pNotes').innerHTML = p.notes.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
@@ -65,6 +76,10 @@
     if (!document.body.classList.contains('product')) backY = scrollY;
     setCol(p.col); $('#pdp').dataset.col = p.col; $('#pdp').classList.add('on'); document.body.classList.add('product');
     $('#pMore').innerHTML = SCENTS.filter(s => s.id !== p.id).slice(0, 3).map(card).join('');
+    const out = p.st === 'out'; $('.p-buy').hidden = out; $('#pNotify').hidden = !out;
+    $('#pNotify .n-msg').textContent = ''; $('#pNotify').classList.remove('done');
+    const pb = $('#pAdd'); pb.textContent = btnTxt(p); pb.disabled = p.st === 'out';
+    $('#pShipNote') && ($('#pShipNote').textContent = p.st === 'pre' ? 'Pre-order: ships when the first pour is ready.' : '');
     document.title = p.name + ' · Mayumi Candles';
     if (location.hash !== '#' + p.id) history.pushState(null, '', '#' + p.id);
     scrollTo({ top: 0, behavior: 'instant' });
@@ -81,7 +96,7 @@
   $('#pBack').onclick = e => { e.preventDefault(); close(); $('#scents').scrollIntoView({ behavior: 'instant' }); };
   $('#pThumbs').onclick = e => { const b = e.target.closest('button'); if (!b) return; $('#pImg').src = b.dataset.s; $$('#pThumbs button').forEach(x => x.classList.toggle('on', x === b)); };
   $$('#pdp [data-q]').forEach(b => (b.onclick = () => { qty = Math.max(1, Math.min(9, qty + +b.dataset.q)); $('#pQty').textContent = qty; }));
-  $('#pAdd').onclick = () => { add(cur.id, qty); $('#pAdd').textContent = 'Added ✓'; setTimeout(() => { $('#pAdd').textContent = 'Add to bag'; openBag(); }, 700); };
+  $('#pAdd').onclick = () => { if (cur.st === 'out') return; add(cur.id, qty); $('#pAdd').textContent = 'Added ✓'; setTimeout(() => { $('#pAdd').textContent = btnTxt(cur); openBag(); }, 700); };
   addEventListener('keydown', e => { if (e.key === 'Escape') closeBag(); });
   if (ALL[location.hash.slice(1)]) { enter(); open(location.hash.slice(1)); }
 
@@ -92,7 +107,7 @@
   function paintBag() {
     const ids = Object.keys(BAG).filter(id => BAG[id] > 0 && ALL[id]);
     $('#bagN').textContent = ids.reduce((s, id) => s + BAG[id], 0);
-    $('#bagList').innerHTML = ids.length ? ids.map(id => { const p = ALL[id], im = p.img || `img/${id}-photo.webp`;
+    $('#bagList').innerHTML = ids.length ? ids.map(id => { const p = ALL[id], im = p.img || `img/${id}-1.webp`;
       return `<li><img src="${im}" alt=""><div><b>${p.name}</b><small>${money(p.price)} · qty ${BAG[id]}</small></div><button data-rm="${id}" aria-label="Remove ${p.name}">Remove</button></li>`; }).join('') : '<li class="empty">Nothing burning yet.</li>';
     $('#bagSub').textContent = money(ids.reduce((s, id) => s + ALL[id].price * BAG[id], 0));
   }
