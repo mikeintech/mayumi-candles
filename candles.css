@@ -110,7 +110,7 @@ em{font-style:italic;color:var(--acc)}
 /* gift sets */
 .set-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);max-width:1280px;margin:0 auto}
 .set{background:var(--card);border-radius:4px;overflow:hidden;transition:background .9s}
-.set img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.set img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
 .set>div{padding:26px 28px 30px}
 .set h3{font-size:34px;margin-bottom:6px}
 .set p{margin:0 0 18px;color:var(--soft)}
@@ -280,5 +280,5 @@ body.product #nav{background:var(--glass);backdrop-filter:blur(14px);color:var(-
 .notify input{flex:1 1 200px;min-width:0;padding:13px 14px;background:transparent;border:1px solid color-mix(in srgb,var(--ink,#f3e6d6) 30%,transparent);color:inherit;border-radius:3px;font:inherit}
 .notify .n-msg{font-size:13px;color:var(--acc)}.notify .n-msg:empty{display:none}
 .notify.done div{display:none}
-.set img{aspect-ratio:1/1;object-position:50% 50%}
+.set img{aspect-ratio:auto;height:auto;object-fit:contain}
 .sc-img .tag.pre{background:#f1dcc6;color:#24110a;box-shadow:0 2px 10px rgba(0,0,0,.35)}
