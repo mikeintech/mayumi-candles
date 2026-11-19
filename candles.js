@@ -20,8 +20,8 @@
       song: 'Soft, fresh, and sincere, like checking in just to hear how someone’s day went. Airy florals, a touch of brightness, and a grounding finish: a quiet kind of care that stays with you.', notes: [['Notes', 'Gardenia, frankincense, citrus vervain']] },
   ];
   const SETS = [
-    { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 50, img: 'img/forever-lasting-2.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
-    { id: 'set-cocoa', name: 'The Cocoa Set', col: 'cocoa', price: 50, img: 'img/nhie-1.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
+    { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 50, img: 'img/set-sand.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
+    { id: 'set-cocoa', name: 'The Cocoa Set', col: 'cocoa', price: 50, img: 'img/set-cocoa.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
   ];
   const N = { nhie: 1, 'good-girl': 1 }; const shots = p => (N[p.id] === 1 ? [1] : [1, 2]).map(k => `img/${p.id}-${k}.webp`);
   const HERO = { cocoa: 'img/nhie-1.webp', sand: 'img/forever-lasting-1.webp' };
