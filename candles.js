@@ -4,20 +4,20 @@
   const money = n => '$' + n.toFixed(2).replace(/\.00$/, '');
 
   const SCENTS = [
-    { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '16oz · single wick', price: 28,
-      song: 'Named for “Never Have I Ever”, the new single.', notes: [['Top', 'Black cherry, smoked clove'], ['Heart', 'Leather, tobacco leaf'], ['Base', 'Dark amber, vanilla bean']] },
-    { id: 'henny-crystals', name: 'Henny & Crystals', col: 'cocoa', size: '12oz · three wick, crystal topped', price: 38,
-      song: 'Cognac and a little shine. Poured with real crystals on top.', notes: [['Top', 'Cognac, orange peel'], ['Heart', 'Oak, brown sugar'], ['Base', 'Smoked vanilla, musk']] },
-    { id: 'clean-up', name: 'Clean Up', col: 'cocoa', size: '16oz · three wick', price: 36,
-      song: 'For the morning after. Fresh sheets, open windows.', notes: [['Top', 'Bergamot, sea salt'], ['Heart', 'White tea, linen'], ['Base', 'Cedar, clean musk']] },
-    { id: 'forever-lasting', name: 'Forever Lasting', col: 'sand', size: '16oz · single wick', price: 28,
-      song: 'Named for the album Forever Lasting.', notes: [['Top', 'Pear, pink pepper'], ['Heart', 'Rose, peony'], ['Base', 'Sandalwood, warm cashmere']] },
-    { id: 'hot-yoga', name: 'Hot Yoga', col: 'sand', st: 'out', size: '8oz · rose gold glass', price: 30,
-      song: 'Warm room, slow breath. Poured in rose gold glass.', notes: [['Top', 'Ginger, grapefruit'], ['Heart', 'Eucalyptus, jasmine'], ['Base', 'Amber, sandalwood']] },
-    { id: 'good-girl', name: 'Good Girl', col: 'sand', st: 'out', size: '16oz · iridescent glass', price: 30,
-      song: 'Sweet on the surface. Poured in iridescent glass.', notes: [['Top', 'Strawberry, champagne'], ['Heart', 'Jasmine, cotton candy'], ['Base', 'Vanilla musk']] },
-    { id: 'call-me', name: 'Call Me', col: 'sand', size: '8oz · travel jar', price: 22,
-      song: 'Small enough to take with you. Light it when you miss them.', notes: [['Top', 'Fig, mandarin'], ['Heart', 'Coconut milk, orange blossom'], ['Base', 'Tonka, soft woods']] },
+    { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '16oz · 2 wicks', price: 45,
+      song: 'Named for “Never Have I Ever”, the new single.', notes: [['Notes', 'Black cherry, smoked clove, leather, dark amber']] },
+    { id: 'henny-crystals', name: 'Henny & Crystals', col: 'cocoa', size: '7oz · 1 wick', price: 35,
+      song: 'White tea and clean citrus, followed by sweet florals of jasmine and violet, resting on a base of cedar, sandalwood, tonka and light amber.', notes: [['Top', 'White tea, clean citrus'], ['Heart', 'Jasmine, violet'], ['Base', 'Cedar, sandalwood, tonka, light amber']] },
+    { id: 'clean-up', name: 'Clean Up', col: 'cocoa', size: '18oz · 2 wicks', price: 50,
+      song: 'Gardenia tuberose infused with essential oils of lemon peel, lemon, nutmeg and lime, with the lush green scent of orchid blended with heavy notes of pear and light musk.', notes: [['Notes', 'Gardenia tuberose, lemon, nutmeg, lime'], ['Finish', 'Orchid, pear, light musk']] },
+    { id: 'forever-lasting', name: 'Forever Lasting', col: 'sand', size: '16oz · 2 wicks', price: 45,
+      song: 'Bold and unforgettable, like a timeless romance or your favorite old-school track. Warm vanilla evokes the quiet comfort of lasting connection, while deep woods and smoky undertones leave a presence that stays with you. Maybe even forever.', notes: [['Notes', 'Coffee & whiskey, vanilla bean noel, mahogany teakwood, palo santo patchouli']] },
+    { id: 'hot-yoga', name: 'Hot Yoga', col: 'sand', st: 'out', size: '8oz · 1 wick · copper jar', price: 35,
+      song: 'Smooth, grounding, and softly sweet, like a deep exhale after your final pose. Warm vanilla blends with earthy palo santo and patchouli for a calm, restorative atmosphere that lingers like peace on your skin.', notes: [['Notes', 'Vanilla bean noel, palo santo patchouli']] },
+    { id: 'good-girl', name: 'Good Girl', col: 'sand', st: 'out', size: '8oz · 1 wick · iridescent sherbet', price: 35,
+      song: 'Soft, warm, and quietly addictive. Rich cocoa butter and airy cashmere melt into the skin: creamy sweetness meets velvety warmth. Effortless, feminine, and a little dangerous, because “good” is only part of the story.', notes: [['Notes', 'Cocoa butter, cashmere']] },
+    { id: 'call-me', name: 'Call Me', col: 'sand', size: '8oz · 1 wick · amber jar', price: 20,
+      song: 'Soft, fresh, and sincere, like checking in just to hear how someone’s day went. Airy florals, a touch of brightness, and a grounding finish: a quiet kind of care that stays with you.', notes: [['Notes', 'Gardenia, frankincense, citrus vervain']] },
   ];
   const SETS = [
     { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 54, img: 'img/forever-lasting-2.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
@@ -71,7 +71,7 @@
     $('#pCol').textContent = (p.col === 'sand' ? 'Sand' : 'Cocoa') + ' collection';
     $('#pName').textContent = p.name; $('#pPrice').textContent = money(p.price); $('#pSong').textContent = p.song;
     $('#pNotes').innerHTML = p.notes.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
-    $('#pMeta').textContent = p.size + ' · Coconut soy · Amber glass';
+    $('#pMeta').textContent = p.size + ' · Coconut soy';
     // a full page: the shop hides, the candle takes the page in its own collection's colors
     if (!document.body.classList.contains('product')) backY = scrollY;
     setCol(p.col); $('#pdp').dataset.col = p.col; $('#pdp').classList.add('on'); document.body.classList.add('product');

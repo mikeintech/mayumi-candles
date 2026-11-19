@@ -280,3 +280,4 @@ body.product #nav{background:var(--glass);backdrop-filter:blur(14px);color:var(-
 .notify input{flex:1 1 200px;min-width:0;padding:13px 14px;background:transparent;border:1px solid color-mix(in srgb,var(--ink,#f3e6d6) 30%,transparent);color:inherit;border-radius:3px;font:inherit}
 .notify .n-msg{font-size:13px;color:var(--acc)}.notify .n-msg:empty{display:none}
 .notify.done div{display:none}
+.set img{aspect-ratio:1/1;object-position:50% 50%}
