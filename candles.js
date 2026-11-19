@@ -20,8 +20,8 @@
       song: 'Soft, fresh, and sincere, like checking in just to hear how someone’s day went. Airy florals, a touch of brightness, and a grounding finish: a quiet kind of care that stays with you.', notes: [['Notes', 'Gardenia, frankincense, citrus vervain']] },
   ];
   const SETS = [
-    { id: 'set-sand', name: 'The Sand Set', col: 'sand', price: 50, img: 'img/set-sand.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
-    { id: 'set-cocoa', name: 'The Cocoa Set', col: 'cocoa', price: 50, img: 'img/set-cocoa.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
+    { id: 'set-sand', st: 'pre', name: 'The Sand Set', col: 'sand', price: 50, img: 'img/set-sand.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
+    { id: 'set-cocoa', st: 'pre', name: 'The Cocoa Set', col: 'cocoa', price: 50, img: 'img/set-cocoa.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
   ];
   const N = { nhie: 1, 'good-girl': 1 }; const shots = p => (N[p.id] === 1 ? [1] : [1, 2]).map(k => `img/${p.id}-${k}.webp`);
   const HERO = { cocoa: 'img/nhie-1.webp', sand: 'img/forever-lasting-1.webp' };
@@ -51,9 +51,9 @@
   $$('.tabs button').forEach(b => (b.onclick = () => { $$('.tabs button').forEach(x => x.classList.toggle('on', x === b)); build(b.dataset.f); if (b.dataset.f !== 'all') setCol(b.dataset.f); }));
   $('#wall').onclick = e => { const c = e.target.closest('.sc'); if (c) open(c.dataset.id); };
 
-  $('#sets-grid').innerHTML = SETS.map(s => `<article class="set ${s.col}"><img src="${s.img}" alt="${s.name}" loading="lazy">
-    <div><p class="kick">${s.size}</p><h3>${s.name}</h3><p>${s.inc}</p><div class="set-b"><span>${money(s.price)}</span><button class="btn solid" data-add="${s.id}">Add to bag</button></div></div></article>`).join('');
-  $('#sets-grid').onclick = e => { const b = e.target.closest('[data-add]'); if (b) { add(b.dataset.add, 1); b.textContent = 'Added ✓'; setTimeout(() => (b.textContent = 'Add to bag'), 1400); } };
+  $('#sets-grid').innerHTML = SETS.map(s => `<article class="set ${s.col}"><span class="set-img">${s.st === 'pre' ? '<em class="tag pre">Pre-order</em>' : ''}<img src="${s.img}" alt="${s.name}" loading="lazy"></span>
+    <div><p class="kick">${s.size}</p><h3>${s.name}</h3><p>${s.inc}</p><div class="set-b"><span>${money(s.price)}</span><button class="btn solid" data-add="${s.id}">${btnTxt(s)}</button></div></div></article>`).join('');
+  $('#sets-grid').onclick = e => { const b = e.target.closest('[data-add]'); if (b) { add(b.dataset.add, 1); b.textContent = 'Added ✓'; setTimeout(() => (b.textContent = btnTxt(SETS.find(x => x.id === b.dataset.add))), 1400); } };
 
   // ---------- back-in-stock alerts (saved locally until wired to the list service) ----------
   $('#pNotify').onsubmit = e => { e.preventDefault(); const f = e.target, em = f.email.value.trim(), m = f.querySelector('.n-msg');
