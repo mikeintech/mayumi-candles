@@ -4,7 +4,7 @@
   const money = n => '$' + Math.round(n);
 
   const SCENTS = [
-    { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '16oz · 2 wicks', price: 45,
+    { id: 'nhie', name: 'Never Have I Ever', col: 'cocoa', st: 'pre', size: '14oz · 2 wicks', price: 45,
       song: 'Named for “Never Have I Ever”, the new single.', notes: [['Notes', 'Black cherry, smoked clove, leather, dark amber']] },
     { id: 'henny-crystals', name: 'Henny & Crystals', col: 'cocoa', size: '8oz · 1 wick', price: 35,
       song: 'White tea and clean citrus, followed by sweet florals of jasmine and violet, resting on a base of cedar, sandalwood, tonka and light amber.', notes: [['Top', 'White tea, clean citrus'], ['Heart', 'Jasmine, violet'], ['Base', 'Cedar, sandalwood, tonka, light amber']] },
@@ -20,7 +20,7 @@
       song: 'Soft, fresh, and sincere, like checking in just to hear how someone’s day went. Airy florals, a touch of brightness, and a grounding finish: a quiet kind of care that stays with you.', notes: [['Notes', 'Gardenia, frankincense, citrus vervain']] },
   ];
   const SETS = [
-    { id: 'set-sand', st: 'pre', name: 'The Sand Set', col: 'sand', price: 50, img: 'img/set-sand.webp', inc: 'Forever Lasting · Call Me · Hot Yoga', size: '3 × 6oz in the sand gift box' },
+    { id: 'set-sand', st: 'pre', name: 'The Sand Set', col: 'sand', price: 50, img: 'img/set-sand.webp', inc: 'Forever Lasting · Call Me · Good Girl', size: '3 × 6oz in the sand gift box' },
     { id: 'set-cocoa', st: 'pre', name: 'The Cocoa Set', col: 'cocoa', price: 50, img: 'img/set-cocoa.webp', inc: 'Henny & Crystals · Never Have I Ever · Clean Up', size: '3 × 6oz in the cocoa gift box' },
   ];
   const N = { nhie: 1, 'good-girl': 1 }; const shots = p => (N[p.id] === 1 ? [1] : [1, 2]).map(k => `img/${p.id}-${k}.webp`);
