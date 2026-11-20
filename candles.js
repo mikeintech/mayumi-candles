@@ -111,6 +111,12 @@
       return `<li><img src="${im}" alt=""><div><b>${p.name}</b><small>${money(p.price)} · qty ${BAG[id]}</small></div><button data-rm="${id}" aria-label="Remove ${p.name}">Remove</button></li>`; }).join('') : '<li class="empty">Nothing burning yet.</li>';
     $('#bagSub').textContent = money(ids.reduce((s, id) => s + ALL[id].price * BAG[id], 0));
   }
+  // checkout: on Shopify the theme provides variant ids, and a cart link sends the bag straight to checkout
+  const V = window.MAYUMI_VARIANTS || {};
+  const goCheckout = () => { const items = Object.keys(BAG).filter(id => BAG[id] > 0 && V[id]).map(id => V[id] + ':' + BAG[id]);
+    if (items.length) location.href = '/cart/' + items.join(','); };
+  const paintGo = () => { const ok = Object.keys(BAG).some(id => BAG[id] > 0 && V[id]); $('#bagGo').disabled = !ok; };
+  $('#bagGo').onclick = goCheckout; paintGo(); const _pb = paintBag; paintBag = () => { _pb(); paintGo(); };
   $('#bagList').onclick = e => { const b = e.target.closest('[data-rm]'); if (b) { delete BAG[b.dataset.rm]; saveBag(); } };
   const openBag = () => { $('#bag').classList.add('on'); $('#scrim').classList.add('on'); };
   const closeBag = () => { $('#bag').classList.remove('on'); $('#scrim').classList.remove('on'); };
